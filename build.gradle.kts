@@ -30,6 +30,7 @@ dependencies {
 	implementation("org.springframework.boot:spring-boot-starter-validation")
 	implementation("org.springframework.boot:spring-boot-starter-web")
 	implementation("org.liquibase:liquibase-core")
+	implementation("org.springframework.boot:spring-boot-starter-actuator:3.5.6")
 	compileOnly("org.projectlombok:lombok")
 	runtimeOnly("org.postgresql:postgresql")
 	annotationProcessor("org.projectlombok:lombok")
