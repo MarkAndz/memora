@@ -32,6 +32,7 @@ dependencies {
 	implementation("org.liquibase:liquibase-core")
 	implementation("org.springframework.boot:spring-boot-starter-actuator:3.5.6")
 	implementation("org.springframework.boot:spring-boot-docker-compose:3.5.6")
+	implementation("com.puppycrawl.tools:checkstyle:11.1.0")
 	compileOnly("org.projectlombok:lombok")
 	runtimeOnly("org.postgresql:postgresql")
 	annotationProcessor("org.projectlombok:lombok")
