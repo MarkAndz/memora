@@ -2,6 +2,19 @@ plugins {
 	java
 	id("org.springframework.boot") version "3.5.6"
 	id("io.spring.dependency-management") version "1.1.7"
+	id("checkstyle")
+}
+
+checkstyle {
+	toolVersion = "11.1.0"
+	configFile = file("config/checkstyle/checkstyle.xml")
+}
+
+tasks.withType<Checkstyle> {
+	reports {
+		xml.required.set(false)
+		html.required.set(true)
+	}
 }
 
 group = "com.markandz"
