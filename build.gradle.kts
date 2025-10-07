@@ -3,11 +3,17 @@ plugins {
 	id("org.springframework.boot") version "3.5.6"
 	id("io.spring.dependency-management") version "1.1.7"
 	id("checkstyle")
+	id("jacoco")
 }
 
 checkstyle {
 	toolVersion = "11.1.0"
 	configFile = file("config/checkstyle/checkstyle.xml")
+}
+
+jacoco {
+	toolVersion = "0.8.13"
+	reportsDirectory = layout.buildDirectory.dir("reports/jacoco")
 }
 
 tasks.withType<Checkstyle> {
@@ -58,4 +64,24 @@ dependencies {
 
 tasks.withType<Test> {
 	useJUnitPlatform()
+	finalizedBy(tasks.jacocoTestReport)
+}
+
+tasks.jacocoTestReport {
+	dependsOn(tasks.test)
+	reports {
+		xml.required.set(true)
+		html.required.set(true)
+	}
+}
+
+tasks.register<JacocoCoverageVerification>("jacocoCoverageVerification"){
+	dependsOn(tasks.test)
+	violationRules{
+		rule{
+			limit{
+				minimum = 0.8.toBigDecimal()
+			}
+		}
+	}
 }
