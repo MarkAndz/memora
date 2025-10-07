@@ -14,7 +14,6 @@ tasks.withType<Checkstyle> {
 	reports {
 		xml.required.set(false)
 		html.required.set(true)
-		html.outputLocation.set(layout.buildDirectory.file("reports/checkstyle/checkstyle.html"))
 	}
 }
 
