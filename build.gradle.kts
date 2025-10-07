@@ -2,6 +2,20 @@ plugins {
 	java
 	id("org.springframework.boot") version "3.5.6"
 	id("io.spring.dependency-management") version "1.1.7"
+	id("checkstyle")
+}
+
+checkstyle {
+	toolVersion = "11.1.0"
+	configFile = file("config/checkstyle/checkstyle.xml")
+}
+
+tasks.withType<Checkstyle> {
+	reports {
+		xml.required.set(false)
+		html.required.set(true)
+		html.outputLocation.set(layout.buildDirectory.file("reports/checkstyle/checkstyle.html"))
+	}
 }
 
 group = "com.markandz"
@@ -32,7 +46,6 @@ dependencies {
 	implementation("org.liquibase:liquibase-core")
 	implementation("org.springframework.boot:spring-boot-starter-actuator:3.5.6")
 	implementation("org.springframework.boot:spring-boot-docker-compose:3.5.6")
-	implementation("com.puppycrawl.tools:checkstyle:11.1.0")
 	compileOnly("org.projectlombok:lombok")
 	runtimeOnly("org.postgresql:postgresql")
 	annotationProcessor("org.projectlombok:lombok")
